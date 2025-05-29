@@ -276,3 +276,25 @@ button:hover {
   background-color: #c0392b;
   transform: scale(1.03);
 }
+#add-product-container {
+  position: fixed;
+  top: 15px;      /* קצת רווח מהחלק העליון */
+  right: 15px;    /* קצת רווח מהצד הימני */
+  z-index: 1000;  /* על מנת שיהיה מעל התוכן */
+}
+
+#add-product-btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
+}
+
+#add-product-btn:hover {
+  background-color: #c0392b;
+}

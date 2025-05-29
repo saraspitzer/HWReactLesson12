@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Cart = ({ cartProducts, sum, setSum, setCartProducts }) => {
   let pro;
-  const currentUser = useContext(MyContext).currentUser;
-
   const navigate = useNavigate();
   const payment = () => {
     navigate('/MyOrder');
@@ -24,7 +22,7 @@ const Cart = ({ cartProducts, sum, setSum, setCartProducts }) => {
   }
   return (
     <div className="cart-container">
-      <h1>my cart!</h1>
+      <h1>🛒🛒</h1>
       <div className="cart-items">
         {cartProducts.map(p => (
           <div className="cart-item" >

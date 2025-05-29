@@ -16,7 +16,7 @@ const AppRouter = ({ store,cartProducts, setCartProducts, sum, setSum, products,
     <MyProvider value={store}>
     <BrowserRouter>
     <Routes>
-      <Route element={<Navbar setCartProducts={setCartProducts} />}>
+      <Route element={<Navbar setSum={setSum} setCartProducts={setCartProducts} />}>
         <Route path="/" element={<Home />}/>
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="ContactUs" element={<ContactUs />} />

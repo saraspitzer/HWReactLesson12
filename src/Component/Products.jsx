@@ -19,6 +19,7 @@ const Products = ({ products, setCartProducts, cartProducts, setSum, sum, setPro
     navigate('/Login');
   }
   const deleteItem = (id) => {
+    alert("are you sure you want to delete this item?")
     const filtered = products.filter(p => p.id !== id);
     setProducts(filtered);
 
@@ -78,72 +79,79 @@ const Products = ({ products, setCartProducts, cartProducts, setSum, sum, setPro
 
   return (
     <div className="products-container">
-
-      {products.map(p => (
+      <div id="add-product-container">
+ {currentUser?.role === "manager" && <button  id="add-product-btn" onClick={() => setShowAddForm(true)}>+ Add New Product</button>}
+     <div/>
+     </div> {products.map(p => (
         <div className="product-card">
           <h3>{p.name}</h3>
           <img src={`/Pics/${p.image}`} alt={p.name} style={{ width: '150px', borderRadius: '8px' }} />
           <h6>Price: {p.price} ILS</h6>
           <h6>Amount of pieces: {p.amountOfPieces}</h6>
-          <button onClick={() => handleMoreInfo(p.id)}>More info</button>
-          <button onClick={currentUser == null ? () => logIn() : () => addToCart(p)} > Add to cart</button>
-          {currentUser?.role === "manager" && <>
+
+          {currentUser?.role === "manager" ? (<>
             <button onClick={() => deleteItem(p.id)} > Delete item</button>
-            <button onClick={() => setItem(p.id)} > Set item</button>
-            <button onClick={() => setShowAddForm(true)}>+ Add New Product</button></>}
+            <button onClick={() => setItem(p.id)} > Set item</button></>) :
+            (<> <button onClick={() => handleMoreInfo(p.id)}>More info</button>
+              <button onClick={currentUser == null ? () => logIn() : () => addToCart(p)} > Add to cart</button></>)}
         </div>
-      ))}
-      {selectedProduct && (
-        <div className="edit-form">
-          <h3>Edit {selectedProduct.name}</h3>
-          <input
-            type="text"
-            value={selectedProduct.name}
-            onChange={(e) =>
-              setSelectedProduct({ ...selectedProduct, name: e.target.value })
-            }
-          />
-          <input
-            type="number"
-            value={selectedProduct.price}
-            onChange={(e) =>
-              setSelectedProduct({ ...selectedProduct, price: +e.target.value })
-            }
-          />
-          <input
-            type="number"
-            value={selectedProduct.amountOfPieces}
-            onChange={(e) =>
-              setSelectedProduct({ ...selectedProduct, amountOfPieces: +e.target.value })
-            } />
-          <button onClick={() => saveChanges()}>Save</button>
-        </div>
-      )}
-      {showAddForm && (
-        <div className="edit-form">
-          <h3>Add New Product</h3>
-          <input
-            type="text"
-            placeholder="Name"
-            value={newProduct.name}
-            onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="Price"
-            value={newProduct.price}
-            onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-          />
-          <input
-            type="number"
-            placeholder="Amount of Pieces"
-            value={newProduct.amountOfPieces}
-            onChange={(e) => setNewProduct({ ...newProduct, amountOfPieces: e.target.value })}
-          />
-          <button onClick={saveNewItem}>Save</button>
-        </div>
-      )}
-    </div>
+      ))
+      }
+      {
+        selectedProduct && (
+          <div className="edit-form">
+            <h3>Edit {selectedProduct.name}</h3>
+            <input
+              type="text"
+              value={selectedProduct.name}
+              onChange={(e) =>
+                setSelectedProduct({ ...selectedProduct, name: e.target.value })
+              }
+            />
+            <input
+              type="number"
+              value={selectedProduct.price}
+              onChange={(e) =>
+                setSelectedProduct({ ...selectedProduct, price: +e.target.value })
+              }
+            />
+            <input
+              type="number"
+              value={selectedProduct.amountOfPieces}
+              onChange={(e) =>
+                setSelectedProduct({ ...selectedProduct, amountOfPieces: +e.target.value })
+              } />
+            <button onClick={() => saveChanges()}>Save</button>
+          </div>
+        )
+      }
+      {
+        showAddForm && (
+          <div className="edit-form">
+            <h3>Add New Product</h3>
+            <input
+              type="text"
+              placeholder="Name"
+              value={newProduct.name}
+              onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+            />
+            <input
+              type="number"
+              placeholder="Price"
+              value={newProduct.price}
+              onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+            />
+            <input
+              type="number"
+              placeholder="Amount of Pieces"
+              value={newProduct.amountOfPieces}
+              onChange={(e) => setNewProduct({ ...newProduct, amountOfPieces: e.target.value })}
+            />
+            <button onClick={saveNewItem}>Save</button>
+          </div>
+        )
+      }
+    </div >
   )
 }
 

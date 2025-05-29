@@ -8,14 +8,15 @@ import Products from './Products'
 import Home from './Home'
 import ProductInfo from './ProductInfo'
 import MyContext from '../context';
-const Navbar = ({setCartProducts}) => {
+const Navbar = ({setCartProducts,setSum}) => {
     const { currentUser, userLoggedIn } = useContext(MyContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
         userLoggedIn(null); // אופס, התנתק — מאפס את המשתמש המחובר
         setCartProducts([]);
-        navigate('/');      // מפנה לדף הבית או כל דף אחר שתרצי
+        setSum(0)
+        navigate('/'); 
     };
 
     return (
