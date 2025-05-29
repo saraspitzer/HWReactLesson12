@@ -3,6 +3,7 @@ import MyContext from '../context';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const currentUser = useContext(MyContext).currentUser;//רשימה של משתמשים
     const users = useContext(MyContext).userList;//רשימה של משתמשים
     const func = useContext(MyContext).userLoggedIn;
     const navigate = useNavigate();

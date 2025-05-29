@@ -7,14 +7,14 @@ import MyContext from './context'; // אל תשכחי את זה!
 //בשם ה' נעשה ונצליח!!!!!!!!!!!!!!!!!!!!!!!
 function App() {
   const [users, setUsers] = useState([
-    { id: 1, userName: "Sara", password: "1234" },
+    { id: 1, userName: "Sara", password: "1234" ,role:"manager"},
     { id: 2, userName: "Yudit", password: "1234bB!" },
   ])
   const [currentUser, setCurrentUser] = useState(null);
   const store = {
-    currentUser:currentUser , 
+    currentUser: currentUser,
     userList: users,
-name:users.userName,
+    name: users.userName,
     addUser: (user) => {
       setUsers([...users, user])
     },
@@ -24,7 +24,7 @@ name:users.userName,
   }
   const [cartProducts, setCartProducts] = useState([]);
   const [sum, setSum] = useState(0);
-  const products = ([
+  const [products, setProducts] = useState([
     {
       id: 1,
       name: "Avocado",
@@ -71,6 +71,7 @@ name:users.userName,
         setSum={setSum}
         products={products}
         currentUser={currentUser}
+        setProducts={setProducts}
       />
     </MyContext.Provider>
   );

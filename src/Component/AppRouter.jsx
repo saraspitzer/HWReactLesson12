@@ -11,7 +11,7 @@ import ProductInfo from './ProductInfo';
 import { MyProvider } from '../context';
 import Login from './LogIn';
 
-const AppRouter = ({ store,cartProducts, setCartProducts, sum, setSum, products }) => {
+const AppRouter = ({ store,cartProducts, setCartProducts, sum, setSum, products,setProducts }) => {
   return (
     <MyProvider value={store}>
     <BrowserRouter>
@@ -21,7 +21,7 @@ const AppRouter = ({ store,cartProducts, setCartProducts, sum, setSum, products 
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="ContactUs" element={<ContactUs />} />
         <Route path="Cart" element={<Cart  setSum={setSum} setCartProducts={setCartProducts} cartProducts={cartProducts} sum={sum} />} />
-        <Route path="Products" element={<Products  products={products} cartProducts={cartProducts} setCartProducts={setCartProducts} sum={sum} setSum={setSum}/>} />
+        <Route path="Products" element={<Products  products={products} setProducts={setProducts} cartProducts={cartProducts} setCartProducts={setCartProducts} sum={sum} setSum={setSum}/>} />
         <Route path="MyOrder" element={<MyOrder setCartProducts={setCartProducts} setSum={setSum} cartProducts={cartProducts} sum={sum}/>} />
         <Route path="productInfo/:id" element={<ProductInfo products={products} />} />
         <Route path="Login" element={<Login />} />
